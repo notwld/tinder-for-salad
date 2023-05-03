@@ -9,9 +9,11 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase,faGraduationCap,faLocationDot,faTimes,faHeart } from '@fortawesome/free-solid-svg-icons'
+import { slideHandler } from 'react-slick/lib/utils/innerSliderUtils'
 
 
 function App() {
+  const [toggle, setToggle] = useState(false)
 
   const images = [
     { src: cat1, alt: 'Image 2',name:"Shakila",age:2,info:"CEO at Catify",edu:"NED",distance:"2 miles away" },
@@ -77,12 +79,20 @@ function App() {
             </Slider>
             <div className="buttons">
               <button className="dislike">
+              
                 <FontAwesomeIcon icon={faTimes} />
               </button>
               <button style={{
                 marginLeft:"10px"
-              }} className="like">
-                <FontAwesomeIcon icon={faHeart} />
+              }} className="like"
+                onClick={() => setToggle(!toggle)}>
+                {
+                  toggle ? <FontAwesomeIcon icon={faHeart} /> : <FontAwesomeIcon icon={faHeart} style={
+                    {
+                      color:"red"
+                    }
+                  } />
+                }
               </button>
             </div>
           </div>
